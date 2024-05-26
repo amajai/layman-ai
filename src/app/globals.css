@@ -18,3 +18,16 @@ body {
 .h-screen-app {
     height: 91.4vh;
 }
+
+.visually-hidden {
+    position: absolute;
+    left:     -10000px;
+    top:      auto;
+    width:    1px;
+    height:   1px;
+    overflow: hidden;
+  }
+
+.promptItem:hover {
+    background-color: theme(colors.default-100);
+}
