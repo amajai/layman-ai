@@ -34,7 +34,7 @@ export default function DeletePromptItemBtn({ promptItem, setSelectedPromptId, s
               <ModalHeader className="flex flex-col gap-1">Delete Prompt?</ModalHeader>
               <ModalBody>
                 <p>
-                  This will delete <b>{promptItem.user_input}</b>
+                  This will delete <b>{promptItem.user_input.length <= 80? promptItem.user_input: `${promptItem.user_input.substring(0,80)}...`}</b>
                 </p>
               </ModalBody>
               <ModalFooter>

@@ -17,7 +17,6 @@ const AppSideMenu = ({ isSidebarOpen, toggleSidebar, data, setSelectedPromptId, 
   useEffect(() => {
     window.addEventListener("resize", handleResize)
   })
-  
   return (
     <div className={`sm:w-3/12 ease-linear sm:p-4 bg-gray-200 ${isMobileView && !isSidebarOpen && 'visually-hidden'} ${isSidebarOpen ? 'w-full p-4 z-10' : 'w-0 p-0'}`}>
       {isSidebarOpen ? (
@@ -35,9 +34,9 @@ const AppSideMenu = ({ isSidebarOpen, toggleSidebar, data, setSelectedPromptId, 
         {data.length > 0 ?
           (data.map((prompt) => (
             <li
-              key={prompt._id}
-              className={`mb-2 p-2 text-sm rounded flex justify-between items-center shadow cursor-pointer promptItem ${selectedPromptId == prompt._id ? 'bg-blue-400 text-white' : 'bg-white'}`}
-              onClick={() => setSelectedPromptId(prompt._id)}
+              key={prompt.id}
+              className={`mb-2 p-2 text-sm rounded flex justify-between items-center shadow cursor-pointer promptItem ${selectedPromptId == prompt.id ? 'bg-blue-400 text-white' : 'bg-white'}`}
+              onClick={() => setSelectedPromptId(prompt.id)}
             >
               {prompt.user_input.length <= 80? prompt.user_input: `${prompt.user_input.substring(0,80)}...`}
               <DeletePromptItemBtn promptItem={prompt} setSelectedPromptId={setSelectedPromptId} selectedPromptId={selectedPromptId} />
