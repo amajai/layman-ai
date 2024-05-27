@@ -5,6 +5,7 @@ import { useLayman } from '@/context/LaymanContext';
 import PromptInput from '@/components/PromptInput';
 import PromptOutput from '@/components/PromptOutput';
 import { Button } from '@nextui-org/button';
+import axios from 'axios';
 
 export default function HomePage() {
   const [prompt, setPrompt] = useState<string>('');
@@ -16,18 +17,16 @@ export default function HomePage() {
     e.preventDefault();
     setLoading(true);
     try {
-      // const res = await axios.post(
-      //   '/api/ask-layman-ai',
-      //   { prompt },
-      //   {
-      //     headers: {
-      //       'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HF_TOKEN}`
-      //     }
-      //   }
-      // );
-      const res = {
-        data: "hello my friend"
-      };
+      const res = await axios.post(
+        '/api/ask-layman-ai',
+        { prompt },
+        {
+          headers: {
+            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HF_TOKEN}`
+          }
+        }
+      );
+
       const now = new Date();
       setResponse(res.data);
       const new_prompt = {

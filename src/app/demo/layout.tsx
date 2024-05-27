@@ -2,7 +2,7 @@
 
 import { useState, ReactNode, useEffect } from 'react';
 import { useLayman } from '@/context/LaymanContext';
-import AppSideMenu from '@/components/AppSideMenu';
+import DemoSideMenu from '@/components/DemoSideMenu';
 import PastPrompt from '@/components/PastPrompt';
 
 interface LayoutProps {
@@ -25,7 +25,7 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="flex h-screen-app">
-      <AppSideMenu
+      <DemoSideMenu
         isSidebarOpen={isSidebarOpen}
         toggleSidebar={toggleSidebar}
         data={laymanSavedPrompts}
