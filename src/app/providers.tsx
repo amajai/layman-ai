@@ -1,12 +1,17 @@
-import {NextUIProvider} from '@nextui-org/react'
-import { LaymanProvider } from '@/context/LaymanContext';
+"use client"
 
-export function Providers({children}: { children: React.ReactNode }) {
+import { NextUIProvider } from '@nextui-org/react'
+import { LaymanProvider } from '@/context/LaymanContext';
+import { SessionProvider } from "next-auth/react"
+
+export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <LaymanProvider>
-      <NextUIProvider>
-        {children}
-      </NextUIProvider>
-    </LaymanProvider>
+    <SessionProvider>
+      <LaymanProvider>
+        <NextUIProvider>
+          {children}
+        </NextUIProvider>
+      </LaymanProvider>
+    </SessionProvider>
   )
 }
