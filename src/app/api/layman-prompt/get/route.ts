@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
 import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/user";
-import { useSession } from "next-auth/react";
-import { authOptions } from "../../auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
+import authOptions from "@/lib/authOptions";
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
