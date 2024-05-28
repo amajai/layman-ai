@@ -1,17 +1,26 @@
 'use client'
 
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import { useLayman } from '@/context/LaymanContext';
 import PromptInput from '@/components/PromptInput';
 import PromptOutput from '@/components/PromptOutput';
 import { Button } from '@nextui-org/button';
 import axios from 'axios';
+import { useSession } from 'next-auth/react';
+import { redirect } from 'next/dist/server/api-utils';
+import { useRouter } from 'next/navigation';
 
-export default function HomePage() {
+export default function DemoPage() {
   const [prompt, setPrompt] = useState<string>('');
   const [response, setResponse] = useState<object | string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const { laymanSavedPrompts, setLaymanSavedPrompts } = useLayman();
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
