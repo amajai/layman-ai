@@ -2,8 +2,9 @@
 
 import { useState, ReactNode, useEffect } from 'react';
 import { useLayman } from '@/context/LaymanContext';
-import DemoSideMenu from '@/components/DemoSideMenu';
+import AppSideMenu from '@/components/AppSideMenu';
 import PastPrompt from '@/components/PastPrompt';
+import { useSession } from 'next-auth/react';
 
 interface LayoutProps {
   children: ReactNode;
@@ -12,7 +13,9 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedPromptId, setSelectedPromptId] = useState(null);
-  const { laymanSavedPrompts } = useLayman();
+  const { laymanSavedPromptsCloud } = useLayman();
+  const { data: session } = useSession();
+
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -25,10 +28,10 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="flex h-screen-app">
-      <DemoSideMenu
+      <AppSideMenu
         isSidebarOpen={isSidebarOpen}
         toggleSidebar={toggleSidebar}
-        data={laymanSavedPrompts}
+        data={laymanSavedPromptsCloud}
         setSelectedPromptId={setSelectedPromptId}
         selectedPromptId={selectedPromptId}
       />
@@ -43,7 +46,7 @@ export default function Layout({ children }: LayoutProps) {
       )}
 
       {selectedPromptId ? (
-        <PastPrompt id={selectedPromptId} isSidebarOpen={isSidebarOpen} />
+        <PastPrompt id={selectedPromptId} isSidebarOpen={isSidebarOpen} sessionObj={session} />
       ) : (
         <div className={`sm:w-9/12 flex flex-col sm:p-4 bg-blue-300 ${isSidebarOpen ? 'w-0 p-0 visually-hidden' : 'w-full p-4'}`}>
           {children}

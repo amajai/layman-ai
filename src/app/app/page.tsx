@@ -6,15 +6,22 @@ import PromptInput from '@/components/PromptInput';
 import PromptOutput from '@/components/PromptOutput';
 import { Button } from '@nextui-org/button';
 import axios from 'axios';
+import { useSession } from 'next-auth/react';
 
-export default function HomePage() {
+
+export default function AppPage() {
   const [prompt, setPrompt] = useState<string>('');
   const [response, setResponse] = useState<object | string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const { laymanSavedPrompts, setLaymanSavedPrompts } = useLayman();
+  const { laymanSavedPromptsCloud, setLaymanSavedPromptsCloud } = useLayman();
+  const { data: session } = useSession();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (!session) {
+      console.error('Not authenticated');
+      return;
+    }
     setLoading(true);
     try {
       const res = await axios.post(
@@ -26,19 +33,17 @@ export default function HomePage() {
           }
         }
       );
-
-      const now = new Date();
+      
+      await axios.post(
+        '/api/layman-prompt/add',
+        JSON.stringify({ user_input: prompt, output: res.data }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }
+      );
       setResponse(res.data);
-      const new_prompt = {
-        id: self.crypto.randomUUID(),
-        user_input: prompt,
-        output: res.data,
-        date: now
-      };
-      const updatedPrompts = laymanSavedPrompts ? [new_prompt, ...laymanSavedPrompts] : [new_prompt];
-      localStorage.setItem('laymanSavedPrompts', JSON.stringify(updatedPrompts));
-      setPrompt('');
-      setLaymanSavedPrompts(updatedPrompts);
     } catch (error) {
       console.error('Error fetching response:', error);
       setResponse({ error: error.message });
