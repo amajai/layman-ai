@@ -1,14 +1,22 @@
 import React from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { useLayman } from "@/context/LaymanContext";
+import { useSession } from "next-auth/react";
+import axios from "axios";
 
 export default function DeleteAllPromptItemBtn({setSelectedPromptId }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { laymanSavedPrompts, setLaymanSavedPrompts } = useLayman();
+  const { laymanSavedPrompts, setLaymanSavedPrompts, setLaymanSavedPromptsCloud } = useLayman();
+  const { data: session } = useSession();
 
   const handleDeleteALL = () => {
-    localStorage.removeItem('laymanSavedPrompts')
-    setLaymanSavedPrompts([]);
+    if (!session) {
+      localStorage.removeItem('laymanSavedPrompts')
+      setLaymanSavedPrompts([]);
+    } else {
+      axios.delete('api/layman-prompt/deleteAll')
+      setLaymanSavedPromptsCloud([]);
+    }
     setSelectedPromptId(null);
   }
 
