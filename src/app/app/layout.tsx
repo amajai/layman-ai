@@ -52,7 +52,6 @@ export default function Layout({ children }: LayoutProps) {
           {children}
         </div>
       )}
-
     </div>
   );
 }

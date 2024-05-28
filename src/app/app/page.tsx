@@ -42,7 +42,17 @@ export default function AppPage() {
             'Content-Type': 'application/json',
           }
         }
-      );
+      );     
+      const getPastUserPrompts = async () => {
+        try {
+          const response = await fetch('/api/layman-prompt/get');
+          const data = await response.json();
+          setLaymanSavedPromptsCloud(data);
+        } catch (error) {
+          console.error('Error fetching messages:', error);
+        }
+      };
+      getPastUserPrompts();
       setResponse(res.data);
     } catch (error) {
       console.error('Error fetching response:', error);

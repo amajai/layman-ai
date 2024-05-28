@@ -78,7 +78,7 @@ const LoginForm: React.FC = () => {
           <Button isLoading={loading} className='my-3' type="submit" size="lg" fullWidth={true} color="primary">
             Sign in
           </Button>
-          <p className="px-6 text-sm text-center dark:text-gray-600">Don't have an account yet?
+          <p className="px-6 text-sm text-center dark:text-gray-600">Don&apos;t have an account yet?
             <Link href={'/register'} className="hover:underline text-primary">Sign up</Link>
           </p>
         </div>
