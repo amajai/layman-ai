@@ -1,17 +1,17 @@
 import React from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { useLayman } from "@/context/LaymanContext";
- import { useSession } from "next-auth/react";
-import useGetUserPrompts from "@/app/hooks/useGetUserPrompts";
+import { useSession } from "next-auth/react";
 import axios from "axios";
+import getUserPrompts from "@/utils/getUserPrompts";
 
 export default function DeletePromptItemBtn({ promptItem, setSelectedPromptId, selectedPromptId }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { laymanSavedPrompts, setLaymanSavedPrompts, setLaymanSavedPromptsCloud } = useLayman();
   const { data: session } = useSession();
 
-  const handleDelete = async (id: string) => {    
-    if(!session){
+  const handleDelete = async (id: string) => {
+    if (!session) {
       const updatedPrompts = laymanSavedPrompts.filter((prompt) => {
         if (prompt.id == id) {
           return false
@@ -27,7 +27,7 @@ export default function DeletePromptItemBtn({ promptItem, setSelectedPromptId, s
           PromptId: id
         }
       });
-      setLaymanSavedPromptsCloud(await useGetUserPrompts());
+      setLaymanSavedPromptsCloud(await getUserPrompts());
     }
     if (selectedPromptId == id)
       setSelectedPromptId(null);
@@ -47,14 +47,14 @@ export default function DeletePromptItemBtn({ promptItem, setSelectedPromptId, s
               <ModalHeader className="flex flex-col gap-1">Delete Prompt?</ModalHeader>
               <ModalBody>
                 <p>
-                  This will delete <b>{promptItem.user_input.length <= 80? promptItem.user_input: `${promptItem.user_input.substring(0,80)}...`}</b>
+                  This will delete <b>{promptItem.user_input.length <= 80 ? promptItem.user_input : `${promptItem.user_input.substring(0, 80)}...`}</b>
                 </p>
               </ModalBody>
               <ModalFooter>
                 <Button color="primary" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Button color="danger" onPress={onClose} onClick={()=>handleDelete(promptItem._id || promptItem.id)}>
+                <Button color="danger" onPress={onClose} onClick={() => handleDelete(promptItem._id || promptItem.id)}>
                   Delete
                 </Button>
               </ModalFooter>
