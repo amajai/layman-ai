@@ -3,10 +3,12 @@ import React from "react";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button } from "@nextui-org/react";
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { signOut, useSession } from "next-auth/react";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const pathname = usePathname()
+  const { data: session } = useSession();
 
   const menuItems = [
     "Profile",
@@ -58,23 +60,39 @@ export default function Nav() {
             Home
           </Link>
         </NavbarItem>
-        <NavbarItem  isActive={pathname === '/demo' ? true : false}>
+        <NavbarItem isActive={pathname === '/demo' ? true : false}>
           <Link color={`${pathname === '/demo' ? 'primary' : 'foreground'}`} href="/demo">
             Demo
           </Link>
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link color="foreground" href="/login">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="primary" href="/register" variant="solid">
-            Sign Up
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
+      {session ?
+        (<NavbarContent justify="end">
+          <NavbarItem>
+            <div className="flex flex-wrap flex-col  sm:text-sm text-xs text-white">
+              <p>Hello, <span className="text-blue-300">{session.user.name}</span> </p>
+              <p>{session.user.email}</p>
+            </div>
+          </NavbarItem>
+          <NavbarItem>
+            <Button as={Link} color="danger" onPress={() => signOut()} variant="solid">
+              Sign Out
+            </Button>
+          </NavbarItem>
+        </NavbarContent>)
+        :
+        (<NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <Link color="foreground" href="/login">Login</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Button as={Link} color="primary" href="/register" variant="solid">
+              Sign Up
+            </Button>
+          </NavbarItem>
+        </NavbarContent>)
+      }
 
       <NavbarMenu>
         {menuItems.map((item, index) => (
