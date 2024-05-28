@@ -47,8 +47,10 @@ const Hero = () => {
                         <div>
                             <Image 
                                 className="w-full" 
-                                src="" 
+                                src="/img/layman_ai_laptop_2.png" 
                                 alt="Hero image" 
+                                width={5500}
+                                height={5500}
                             />
                         </div>
                     </div>
