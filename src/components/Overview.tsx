@@ -12,7 +12,7 @@ const Overview: React.FC = () => {
         <div>
           <h2 className="mb-4 text-2xl font-extrabold tracking-tight text-center text-white md:leading-tight sm:text-left md:text-4xl">Simplify Your Reading</h2>
           <p className="mb-5 text-base text-center text-primary-600 sm:text-left md:text-lg">
-            Whether you're tackling challenging articles, legal documents, or
+            Whether you are tackling challenging articles, legal documents, or
             technical reports, Layman AI makes it accessible for everyone. Simplify your reading experience and gain a clearer understanding of the information that matters to you.
           </p>
         </div>
