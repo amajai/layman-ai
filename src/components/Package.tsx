@@ -22,7 +22,7 @@ const Package: React.FC = () => {
         </div>
         <div className="flex flex-col items-center h-full py-20 px-20 justify-center flex-1 bg-primary-100">
           <span className="text-xl font-bold">Registered Package</span>
-          <p className="text-md text-center mb-8">Unlock More Features</p>
+          <p className="text-md text-center mb-8">Increased Limit</p>
           <p className="text-3xl font-bold text-center mb-4">30 Prompts / Day</p>
           <p className="font-semibold text-center text-lg">
             Sign up for a free account to simplify up to 30 texts per day, save prompts, and enjoy cloud storage.
@@ -33,6 +33,21 @@ const Package: React.FC = () => {
             role="button"
           >
             Sign Up Now
+          </Link>
+        </div>
+        <div className="flex flex-col items-center h-full py-20 px-20 justify-center flex-1 bg-warning-200">
+          <span className="text-xl font-bold">Special Package</span>
+          <p className="text-md text-center mb-8">Unlimited Power</p>
+          <p className="text-3xl font-bold text-center mb-4">Unlimited Access</p>
+          <p className="font-semibold text-center text-lg">
+            Get unlimited and easy text simplifications upon request by contacting me directly.
+          </p>
+          <Link
+            href="mailto:aabdulmajed.isa@gmail.com"
+            className=" mt-10 inline-flex items-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 outline outline-white rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900  hover:bg-primary-50"
+            role="button"
+          >
+            Contact Me
           </Link>
         </div>
       </div>
