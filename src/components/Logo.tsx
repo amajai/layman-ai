@@ -8,7 +8,8 @@ export const Logo = () => {
         width={0}
         height={0}
         sizes="100vw"
-        style={{ width: '30%', height: 'auto' }}
+        priority={true}
+        style={{ width: '40%', height: 'auto' }}
       />
     </>
   )
