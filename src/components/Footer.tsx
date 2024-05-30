@@ -5,10 +5,12 @@ import React, { useEffect, useState } from "react"
 
 const Footer: React.FC = () => {
   const [year, setYear] = useState('');
+
   useEffect(() => {
     const date = new Date();
     setYear(date.getFullYear().toString())
   }, [])
+
   return (
     <footer className="bg-primary-100 flex flex-col items-center justify-between px-24 py-6 mx-auto md:flex-row">
       <p className="mb-8 text-sm text-center text-white md:text-left md:mb-0">{year || '2024'} Layman AI. Made by <Link className="text-primary-700" href={'https://github.com/amajai'}>Abdulmajeed Isa</Link>.</p>
