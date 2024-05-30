@@ -50,6 +50,8 @@ const AppSideMenu = ({ isSidebarOpen, toggleSidebar, data, setSelectedPromptId, 
         New Prompt
       </Button>
       <DeleteAllPromptItemBtn setSelectedPromptId={setSelectedPromptId} />
+      <p className='text-warning-300 mt-3 text-center'>Demo Version</p>
+
     </div>
   )
 }

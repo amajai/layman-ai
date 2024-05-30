@@ -3,6 +3,7 @@ import { Button } from "@nextui-org/react";
 import DeletePromptItemBtn from './DeletePromptItemBtn';
 import DeleteAllPromptItemBtn from './DeleteAllPromptItemBtn';
 
+
 const AppSideMenu = ({ isSidebarOpen, toggleSidebar, data, setSelectedPromptId, selectedPromptId }) => {
   const [isMobileView, setIsMobileView] = useState(false)
 
@@ -14,9 +15,10 @@ const AppSideMenu = ({ isSidebarOpen, toggleSidebar, data, setSelectedPromptId, 
     }
   }
 
-  useEffect(() => {
-    window.addEventListener("resize", handleResize)
-  })
+  useEffect(()=>{
+    window.addEventListener("resize", handleResize);
+    handleResize()
+  }, [])
   
   return (
     <div className={`sm:w-3/12 ease-linear sm:p-4 bg-gray-200 ${isMobileView && !isSidebarOpen && 'visually-hidden'} ${isSidebarOpen ? 'w-full p-4 z-10' : 'w-0 p-0'}`}>
@@ -39,7 +41,7 @@ const AppSideMenu = ({ isSidebarOpen, toggleSidebar, data, setSelectedPromptId, 
               className={`mb-2 p-2 text-sm rounded flex justify-between items-center shadow cursor-pointer promptItem ${selectedPromptId == prompt._id ? 'bg-blue-400 text-white' : 'bg-white'}`}
               onClick={() => setSelectedPromptId(prompt._id)}
             >
-              {prompt.user_input.length <= 80? prompt.user_input: `${prompt.user_input.substring(0,80)}...`}
+              {prompt.user_input.length <= 80 ? prompt.user_input : `${prompt.user_input.substring(0, 80)}...`}
               <DeletePromptItemBtn promptItem={prompt} setSelectedPromptId={setSelectedPromptId} selectedPromptId={selectedPromptId} />
             </li>
           )))
@@ -47,10 +49,13 @@ const AppSideMenu = ({ isSidebarOpen, toggleSidebar, data, setSelectedPromptId, 
           <div className='h-4/6 text-center flex justify-center items-center'>No prompt history</div>
         }
       </ul>
+
       <Button fullWidth={true} color="success" className='mt-5' onPress={() => setSelectedPromptId(null)}>
         New Prompt
       </Button>
-      <DeleteAllPromptItemBtn setSelectedPromptId={setSelectedPromptId} />
+
+
+      <DeleteAllPromptItemBtn setSelectedPromptId={setSelectedPromptId} />      
     </div>
   )
 }
