@@ -13,7 +13,14 @@ const HowItWorks: React.FC = () => {
 
         <div className="relative mt-12 lg:mt-20">
           <div className="absolute inset-x-0 hidden xl:px-44 top-2 md:block md:px-20 lg:px-28">
-            <Image className="w-full" src={'/curved-dotted-line.svg'} alt="curved-dotted-line" width={1000} height={1000} />
+            <Image 
+            className="w-full" 
+            src={'/curved-dotted-line.svg'} 
+            alt="curved-dotted-line" 
+            width={0} 
+            height={0} 
+            style={{ width: '100%', height: 'auto' }}
+            />
           </div>
 
           <div className="relative grid grid-cols-1 text-center gap-y-12 md:grid-cols-3 gap-x-12">
