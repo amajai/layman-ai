@@ -15,7 +15,7 @@ const CTA: React.FC = () => {
                             Sign Up
                         </Link>
                     </div>
-                    <p className="mt-6 text-base text-white">Already have an account? <a href="/login" className="text-primary-600 transition-all duration-200 hover:text-primary-200 focus:text-primary-200 hover:underline">Log in</a></p>
+                    <p className="mt-6 text-base text-white">Already have an account? <Link href="/login" className="text-primary-600 transition-all duration-200 hover:text-primary-200 focus:text-primary-200 hover:underline">Log in</Link></p>
                 </div>
             </div>
         </section>
