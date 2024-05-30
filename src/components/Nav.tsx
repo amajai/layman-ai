@@ -1,21 +1,14 @@
 "use client"
 import React from "react";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button } from "@nextui-org/react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link as UILink, Button } from "@nextui-org/react";
 import { usePathname } from 'next/navigation'
 import { Logo } from "./Logo";
 import { NavLog } from "./NavLog";
+import Link from "next/link";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const pathname = usePathname()
-
-
-  const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Log Out",
-  ];
 
   return (
     <Navbar
@@ -44,42 +37,38 @@ export default function Nav() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <Link color="foreground" href="/">
+          <UILink as={Link} color="foreground" href="/">
             <Logo/>
-          </Link>
+          </UILink>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem isActive={pathname === '/' ? true : false}>
-          <Link color={`${pathname === '/' ? 'primary' : 'foreground'}`} href="/">
+          <UILink as={Link}  color={`${pathname === '/' ? 'primary' : 'foreground'}`} href="/">
             Home
-          </Link>
+          </UILink>
         </NavbarItem>
-        <NavbarItem isActive={pathname === '/demo' ? true : false}>
-          <Link color={`${pathname === '/demo' ? 'primary' : 'foreground'}`} href="/demo">
-            Demo
-          </Link>
+        <NavbarItem isActive={pathname === '/demo' ? true : false || pathname === '/app' ? true : false }>
+          <UILink as={Link}  color={`${pathname === '/demo' || pathname === '/app' ? 'primary' : 'foreground' }`} href="/demo">
+            App
+          </UILink>
         </NavbarItem>
       </NavbarContent>
 
       <NavLog/>
 
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              color={
-                index === menuItems.length - 1 ? "danger" : "foreground"
-              }
-              className="w-full"
-              href="#"
-              size="lg"
-            >
-              {item}
-            </Link>
+          <NavbarMenuItem>
+            <UILink as={Link} color="foreground" className="w-full" href="/" size="lg">
+              Home
+            </UILink>
           </NavbarMenuItem>
-        ))}
+          <NavbarMenuItem>
+            <UILink as={Link} color="foreground" className="w-full" href="/demo" size="lg">
+              App
+            </UILink>
+          </NavbarMenuItem>     
       </NavbarMenu>
     </Navbar>
   );
