@@ -86,6 +86,7 @@ Add the following environment variables:
 
 ```env
 HF_TOKEN=<your-hugging-face-api-key>
+HF_REPO_ID=<your-hugging-face-model-repo-name>
 NEXT_PUBLIC_HF_TOKEN=<your-hugging-face-api-key>
 MONGODB_URI=<your-mongodb-connection-string>
 NEXTAUTH_SECRET=<your-sercet-secret-auth-pass>
