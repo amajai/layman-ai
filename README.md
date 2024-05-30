@@ -88,7 +88,7 @@ Add the following environment variables:
 HF_TOKEN=<your-hugging-face-api-key>
 HF_REPO_ID=<your-hugging-face-model-repo-name>
 NEXT_PUBLIC_HF_TOKEN=<your-hugging-face-api-key>
-MONGODB_URI=<your-mongodb-connection-string>
+MONGODB_URI=<your-mongodb-connection-string>/<Database name>
 NEXTAUTH_SECRET=<your-sercet-secret-auth-pass>
 NEXTAUTH_URL=<Current website URL>
 ```
@@ -132,3 +132,7 @@ npm run dev
 
 ## AI Models
 1. https://huggingface.co/models
+
+## Authentication
+1. https://www.youtube.com/watch?v=PEMfsqZ2-As
+2. https://next-auth.js.org/getting-started/introduction
