@@ -50,7 +50,7 @@ export default function Nav() {
           </UILink>
         </NavbarItem>
         <NavbarItem isActive={pathname === '/demo' ? true : false || pathname === '/app' ? true : false }>
-          <UILink as={Link}  color={`${pathname === '/demo' || pathname === '/app' ? 'primary' : 'foreground' }`} href="/demo">
+          <UILink color={`${pathname === '/demo' || pathname === '/app' ? 'primary' : 'foreground' }`} href="/demo">
             App
           </UILink>
         </NavbarItem>
