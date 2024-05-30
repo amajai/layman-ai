@@ -103,25 +103,18 @@ npm run dev
     Open your browser and navigate to http://localhost:3000.
 
 ## Usage Guidelines
-1. Text Simplification
-
-     Enter the text you want to simplify into the input field.
+### Text Simplification
+1. Enter the text you want to simplify into the input field.
+2. Click "Simplify" to receive the simplified version of the text.
    
-     Click "Simplify" to receive the simplified version of the text.
-   
-3. User Registration and Login
+### User Registration and Login
+1. Register for an account to unlock more features.
+2. Login to access your saved prompts and utilize cloud storage.
 
-    Register for an account to unlock more features.
-   
-    Login to access your saved prompts and utilize cloud storage.
-
-5. Prompt History
-
-    Demo users can store up to 5 prompts per day in local storage.
-   
-    Registered users can store up to 30 prompts per day in cloud storage.
-
-    Special users can get unlimited access by contacting me directly.
+### Prompt History
+1. Demo users can store up to 5 prompts per day in local storage.
+2. Registered users can store up to 30 prompts per day in cloud storage.
+3. Special users can get unlimited access by contacting me directly.
    
 ## Resources
 
@@ -135,3 +128,6 @@ npm run dev
 
 ### Icons
 1. https://heroicons.com
+
+## AI Models
+1. https://huggingface.co/models
