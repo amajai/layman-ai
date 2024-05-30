@@ -31,13 +31,23 @@ const PastPrompt: React.FC<PastPromptProps> = ({ id, isSidebarOpen, sessionObj =
 
   return (
     <div className={`sm:w-9/12 sm:p-4 bg-blue-400 ${isSidebarOpen ? 'w-0 p-0 visually-hidden' : 'w-full p-4'}`}>
-      <Textarea
-        isReadOnly
-        size="lg"
-        minRows={500}
-        label="Input"
-        placeholder={prompt.user_input}
-      />
+      <div className="relative lg:mt-6 mt-0">
+        <Textarea
+          isReadOnly
+          size="lg"
+          minRows={500}
+          label="Input"
+          placeholder={prompt.user_input}
+        />
+        <Button
+          style={{ position: 'absolute', top: 0, right: 0 }}
+          onPress={() => handleCopy(prompt.user_input)}
+          size="sm"
+          radius="full"
+        >
+          Copy
+        </Button>
+      </div>
       <br />
       <div className="relative lg:mt-6 mt-0">
         <Textarea
