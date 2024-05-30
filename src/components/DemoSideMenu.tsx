@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from "@nextui-org/react";
+import { Button, Spinner } from "@nextui-org/react";
 import DeletePromptItemBtn from './DeletePromptItemBtn';
 import DeleteAllPromptItemBtn from './DeleteAllPromptItemBtn';
 
