@@ -7,16 +7,25 @@ import PromptOutput from '@/components/PromptOutput';
 import { Button } from '@nextui-org/button';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
-import { redirect } from 'next/dist/server/api-utils';
-import { useRouter } from 'next/navigation';
+import usePromptLimit from '@/hooks/usePromptLimit';
+import LimitModel from '@/components/LimitModel';
+import { Link, useDisclosure } from '@nextui-org/react';
+
 
 export default function DemoPage() {
   const [prompt, setPrompt] = useState<string>('');
   const [response, setResponse] = useState<object | string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const { laymanSavedPrompts, setLaymanSavedPrompts } = useLayman();
-  const { data: session, status } = useSession();
-  const router = useRouter();
+  const { status } = useSession();
+  const { promptCount, incrementPromptCount, isLimitReached } = usePromptLimit(5);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [year, setYear] = useState('');
+
+  useEffect(() => {
+    const date = new Date();
+    setYear(date.getFullYear().toString())
+  }, [])
 
   if (status === 'loading') {
     return <div>Loading...</div>;
@@ -24,6 +33,11 @@ export default function DemoPage() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (isLimitReached) {
+      onOpen()
+      setPrompt('')
+      return
+    }
     setLoading(true);
     try {
       const res = await axios.post(
@@ -35,7 +49,7 @@ export default function DemoPage() {
           }
         }
       );
-
+      incrementPromptCount()
       const now = new Date();
       setResponse(res.data);
       const new_prompt = {
@@ -57,6 +71,7 @@ export default function DemoPage() {
 
   return (
     <div className="container" id="main">
+      <LimitModel isOpen={isOpen} onOpenChange={onOpenChange} limit={5} />
       <form onSubmit={handleSubmit}>
         <PromptInput
           value={prompt}
@@ -68,6 +83,7 @@ export default function DemoPage() {
         </Button>
       </form>
       <PromptOutput resultOutput={JSON.stringify(response, null, 2)} isLoading={loading} />
+      <p className='mt-12 text-center text-black text-sm'>{year || '2024'} Layman AI. Made by <Link underline="hover" size='sm' className="text-primary-100" href={'https://github.com/amajai'}>Abdulmajeed Isa</Link></p>
     </div>
 
   );
