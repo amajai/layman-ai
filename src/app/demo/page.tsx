@@ -9,7 +9,7 @@ import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import usePromptLimit from '@/hooks/usePromptLimit';
 import LimitModel from '@/components/LimitModel';
-import { Link, useDisclosure } from '@nextui-org/react';
+import { Link, Spinner, useDisclosure } from '@nextui-org/react';
 
 
 export default function DemoPage() {
@@ -18,7 +18,7 @@ export default function DemoPage() {
   const [loading, setLoading] = useState<boolean>(false);
   const { laymanSavedPrompts, setLaymanSavedPrompts } = useLayman();
   const { status } = useSession();
-  const { promptCount, incrementPromptCount, isLimitReached } = usePromptLimit(5);
+  const { incrementPromptCount, isLimitReached } = usePromptLimit(5);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [year, setYear] = useState('');
 
@@ -28,7 +28,7 @@ export default function DemoPage() {
   }, [])
 
   if (status === 'loading') {
-    return <div>Loading...</div>;
+    return <Spinner/>;
   }
 
   const handleSubmit = async (e: FormEvent) => {
@@ -83,7 +83,7 @@ export default function DemoPage() {
         </Button>
       </form>
       <PromptOutput resultOutput={JSON.stringify(response, null, 2)} isLoading={loading} />
-      <p className='mt-12 text-center text-black text-sm'>{year || '2024'} Layman AI. Made by <Link underline="hover" size='sm' className="text-primary-100" href={'https://github.com/amajai'}>Abdulmajeed Isa</Link></p>
+      <p className='mt-12 text-center text-black text-sm'>{year || '2024'} Layman AI. Made by <Link underline="hover" size='sm' className="text-primary-100" href={'https://github.com/amajai/layman-ai'}>Abdulmajeed Isa</Link></p>
     </div>
 
   );

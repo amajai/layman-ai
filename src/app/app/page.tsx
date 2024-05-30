@@ -95,7 +95,7 @@ export default function AppPage() {
         </Button>
       </form>
       <PromptOutput resultOutput={JSON.stringify(response, null, 2)} isLoading={loading} />
-      <p className='mt-12 text-center text-black text-sm'>{year || '2024'} Layman AI. Made by <Link underline="hover" size='sm' className="text-primary-100" href={'https://github.com/amajai'}>Abdulmajeed Isa</Link></p>
+      <p className='mt-12 text-center text-black text-sm'>{year || '2024'} Layman AI. Made by <Link underline="hover" size='sm' className="text-primary-100" href={'https://github.com/amajai/layman-ai'}>Abdulmajeed Isa</Link></p>
     </div>
   );
 }

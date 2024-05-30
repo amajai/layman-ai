@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-primary-100 flex flex-col items-center justify-between px-24 py-6 mx-auto md:flex-row">
-      <p className="mb-8 text-sm text-center text-white md:text-left md:mb-0">{year || '2024'} Layman AI. Made by <Link className="text-primary-700" href={'https://github.com/amajai'}>Abdulmajeed Isa</Link>.</p>
+      <p className="mb-8 text-sm text-center text-white md:text-left md:mb-0">{year || '2024'} Layman AI. Made by <Link className="text-primary-700" href={'https://github.com/amajai/layman-ai'}>Abdulmajeed Isa</Link>.</p>
       <div className="flex mt-2 space-x-2">
         <Link rel="noopener noreferrer" href={'https://github.com/amajai'} title="GitHub" className="text-white">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32" className="w-4 h-4">
