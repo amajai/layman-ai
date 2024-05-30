@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import Hero from '@/components/Hero'
 import HowItWorks from '@/components/HowItWorks';
 import Overview from '@/components/Overview';
+import Package from '@/components/Package';
 import React from 'react';
 
 const App: React.FC = () => {
@@ -13,6 +14,7 @@ const App: React.FC = () => {
       <HowItWorks/>
       <Feature/>
       <Overview/>
+      <Package/>
       <CTA/>
       <Footer/>
     </>
