@@ -4,6 +4,8 @@
 
 Layman AI simplifies complex text, making it easier to understand for everyone. This project transforms detailed, technical, or hard-to-understand information into plain language, enhancing accessibility and comprehension.
 
+https://laymanai.netlify.app/
+
 ## Table of Contents
 
 - [Overview](#overview)  
@@ -130,9 +132,9 @@ npm run dev
 ### Icons
 1. https://heroicons.com
 
-## AI Models
+### AI Models
 1. https://huggingface.co/models
 
-## Authentication
+### Authentication
 1. https://www.youtube.com/watch?v=PEMfsqZ2-As
 2. https://next-auth.js.org/getting-started/introduction
